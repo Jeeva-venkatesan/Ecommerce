@@ -7,7 +7,7 @@ const Onboarding = () => {
 
     const {
         navigate
-    } = useNavigation()
+    } = useNavigation();
 
     return (
         <View style={{
@@ -69,7 +69,7 @@ const Onboarding = () => {
                     <Button label={'Get Started'} style={{
                         backgroundColor: 'black'
                     }}
-                    onPress={() => navigate('loginScreen')}
+                        onPress={() => navigate('loginScreen')}
                     />
                 </View>
             </ImageBackground>

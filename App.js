@@ -2,11 +2,15 @@ import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Onboarding from './src/screens/Onboarding/Onboarding'
 import Navigation from './Navigation'
+import { Provider } from 'react-redux'
+import { store } from './src/store/store'
 
 const App = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Navigation />
+      <Provider store={store}>
+        <Navigation />
+      </Provider>
     </SafeAreaView>
   )
 }
@@ -14,7 +18,7 @@ const App = () => {
 export default App
 
 const styles = StyleSheet.create({
-  container:{
-    flex : 1
+  container: {
+    flex: 1
   }
 })

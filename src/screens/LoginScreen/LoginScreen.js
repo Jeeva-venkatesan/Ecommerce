@@ -1,9 +1,22 @@
-import { Image, ImageBackground, StyleSheet, Text, TextInput, View } from 'react-native'
-import React from 'react'
+import { Image, StyleSheet, Text, TextInput, View } from 'react-native'
+import React, { useCallback, useState } from 'react'
 import Button from '../../component/Button'
+import { useNavigation } from '@react-navigation/native';
 
 
 const LoginScreen = () => {
+  const [mobileNumber, setMobileNumber] = useState('');
+
+  const { navigate } = useNavigation();
+
+  const onPressLogin = useCallback(() => {
+    if (mobileNumber?.length === 10) {
+      navigate('otpVerify', {
+        mobileNumber
+      })
+    }
+  }, [mobileNumber])
+
   return (
     <View style={{
       flex: 1
@@ -66,6 +79,8 @@ const LoginScreen = () => {
               keyboardType='numeric'
               placeholder='Phone Number'
               maxLength={10}
+              onChangeText={setMobileNumber}
+              value={mobileNumber}
             />
 
           </View>
@@ -76,7 +91,9 @@ const LoginScreen = () => {
           }}>
             <Button label={'LogIn with Mobile'} style={{
               backgroundColor: 'black'
-            }} />
+            }}
+              onPress={onPressLogin}
+            />
           </View>
         </View>
         <View style={{
@@ -87,20 +104,20 @@ const LoginScreen = () => {
         }}>
           <Button style={{
             backgroundColor: 'white',
-            flexDirection:'row',
-            gap:4,
-            borderColor:'#939393',
-            borderWidth:2
+            flexDirection: 'row',
+            gap: 4,
+            borderColor: '#939393',
+            borderWidth: 1
           }}>
-            <Image 
+            <Image
               source={require('../../assets/img/google_icon.png')}
               style={{
 
               }}
             />
             <Text style={{
-              color:'black',
-              fontSize:18
+              color: 'black',
+              fontSize: 18
             }}>Continue with Google</Text>
           </Button>
         </View>
